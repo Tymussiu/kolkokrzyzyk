@@ -8,8 +8,20 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
     <script>
+
         $(document).ready(function(){
-            
+
+
+            $('#start').click(function(){
+                let graczX = $('#graczX').val();
+                let graczO = $('#graczO').val();
+                if(graczX === '' || graczO === ''){
+                    alert('Wpisz imiona lub ksywki graczy');
+                } else {
+                    $('.gracze').hide();
+                    $('.container').show();
+                }
+            });
         })
     </script>
 </head>
@@ -21,10 +33,10 @@
         <div class="gracze text-center">
             <input type="text" id="graczX" placeholder="Gracz X"><br>
             <input type="text" id="graczO" placeholder="Gracz O"><br><br>
-            <button type="button" class="btn btn-outline-primary">Start</button>
+            <button type="button" class="btn btn-outline-primary" id="start">Start</button>
         </div>
         <br>
-        <div class="container">
+        <div class="container" style="display:none;">
             <div class="row text-center">
                 <div class="col-4 " id="1">1</div>
                 <div class="col-4" id="2">2</div>
