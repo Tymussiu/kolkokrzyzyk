@@ -20,8 +20,29 @@
                 } else {
                     $('.gracze').hide();
                     $('.container').show();
+                    $('#nazwaGracza').show();
                 }
             });
+
+            let licznik = 0;
+
+            $('.col-4').click(function(){
+
+            if($(this).text() !== ''){
+                return;
+            }
+            licznik++;
+
+            
+            if(licznik % 2 === 1){
+                $(this).text('X');
+                $('#nazwaGracza').text("Ruch gracza O");
+            } else {
+                $(this).text('O');
+                $('#nazwaGracza').text("Ruch gracza X");
+            }
+
+});
         })
     </script>
 </head>
@@ -36,21 +57,24 @@
             <button type="button" class="btn btn-outline-primary" id="start">Start</button>
         </div>
         <br>
+        <div class="nazwaGracza">
+            <p id="nazwaGracza" style="display: none;">Ruch gracza X</p>
+        </div>
         <div class="container" style="display:none;">
             <div class="row text-center">
-                <div class="col-4 " id="1">1</div>
-                <div class="col-4" id="2">2</div>
-                <div class="col-4 " id="3">3</div>
+                <div class="col-4" id="1"></div>
+                <div class="col-4" id="2"></div>
+                <div class="col-4" id="3"></div>
             </div>
             <div class="row text-center">
-                <div class="col-4" id="4">4</div>
-                <div class="col-4" id="5">5</div>
-                <div class="col-4" id="6">6</div>
+                <div class="col-4" id="4"></div>
+                <div class="col-4" id="5"></div>
+                <div class="col-4" id="6"></div>
             </div>
             <div class="row text-center">
-                <div class="col-4" id="7">7</div>
-                <div class="col-4" id="8">8</div>
-                <div class="col-4" id="9">9</div>
+                <div class="col-4" id="7"></div>
+                <div class="col-4" id="8"></div>
+                <div class="col-4" id="9"></div>
             </div>
         </div>
 
