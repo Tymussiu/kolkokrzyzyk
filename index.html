@@ -9,41 +9,136 @@
 <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
     <script>
 
-        $(document).ready(function(){
+       $(document).ready(function(){
 
+    $('#start').click(function(){
+        let graczX = $('#graczX').val();
+        let graczO = $('#graczO').val();
 
-            $('#start').click(function(){
-                let graczX = $('#graczX').val();
-                let graczO = $('#graczO').val();
-                if(graczX === '' || graczO === ''){
-                    alert('Wpisz imiona lub ksywki graczy');
-                } else {
-                    $('.gracze').hide();
-                    $('.container').show();
-                    $('#nazwaGracza').show();
-                }
-            });
+        if(graczX === '' || graczO === ''){
+            alert('Wpisz imiona lub ksywki graczy');
+        } else {
+            $('.gracze').hide();
+            $('.container').show();
+            $('#nazwaGracza').show();
+        }
 
-            let licznik = 0;
+        $('#nazwaGracza').text("Ruch gracza " + $('#graczX').val());
+    });
 
-            $('.col-4').click(function(){
+    let licznik = 0;
+    let wynikX = 0;
+    let wynikO = 0;
+    let koniecGry = false;
 
-            if($(this).text() !== ''){
-                return;
-            }
-            licznik++;
+    $('#wynikX').text(wynikX);
+    $('#wynikO').text(wynikO);
 
-            
-            if(licznik % 2 === 1){
-                $(this).text('X');
-                $('#nazwaGracza').text("Ruch gracza O");
-            } else {
-                $(this).text('O');
-                $('#nazwaGracza').text("Ruch gracza X");
-            }
+    $('.col-4').click(function(){
+
+        if(koniecGry || $(this).text() !== ''){
+            return;
+        }
+
+        licznik++;
+
+        if(licznik % 2 === 1){
+            $(this).text('X');
+            $('#nazwaGracza').text("Ruch gracza " + $('#graczO').val());
+        } else {
+            $(this).text('O');
+            $('#nazwaGracza').text("Ruch gracza " + $('#graczX').val());
+        }
+
+        let box1 = $('#1').text();
+        let box2 = $('#2').text();
+        let box3 = $('#3').text();
+        let box4 = $('#4').text();
+        let box5 = $('#5').text();
+        let box6 = $('#6').text();
+        let box7 = $('#7').text();
+        let box8 = $('#8').text();
+        let box9 = $('#9').text();
+
+        if(box1=="X" && box2=="X" && box3=="X"){
+            $('#1, #2, #3').addClass('wygrana');
+            wynikX++;
+        }
+        else if(box4=="X" && box5=="X" && box6=="X"){
+            $('#4, #5, #6').addClass('wygrana');
+            wynikX++;
+        }
+        else if(box7=="X" && box8=="X" && box9=="X"){
+            $('#7, #8, #9').addClass('wygrana');
+            wynikX++;
+        }
+        else if(box1=="X" && box4=="X" && box7=="X"){
+            $('#1, #4, #7').addClass('wygrana');
+            wynikX++;
+        }
+        else if(box2=="X" && box5=="X" && box8=="X"){
+            $('#2, #5, #8').addClass('wygrana');
+            wynikX++;
+        }
+        else if(box3=="X" && box6=="X" && box9=="X"){
+            $('#3, #6, #9').addClass('wygrana');
+            wynikX++;
+        }
+        else if(box1=="X" && box5=="X" && box9=="X"){
+            $('#1, #5, #9').addClass('wygrana');
+            wynikX++;
+        }
+        else if(box3=="X" && box5=="X" && box7=="X"){
+            $('#3, #5, #7').addClass('wygrana');
+            wynikX++;
+        }
+        else if(box1=="O" && box2=="O" && box3=="O"){
+            $('#1, #2, #3').addClass('wygrana');
+            wynikO++;
+        }
+        else if(box4=="O" && box5=="O" && box6=="O"){
+            $('#4, #5, #6').addClass('wygrana');
+            wynikO++;
+        }
+        else if(box7=="O" && box8=="O" && box9=="O"){
+            $('#7, #8, #9').addClass('wygrana');
+            wynikO++;
+        }
+        else if(box1=="O" && box4=="O" && box7=="O"){
+            $('#1, #4, #7').addClass('wygrana');
+            wynikO++;
+        }
+        else if(box2=="O" && box5=="O" && box8=="O"){
+            $('#2, #5, #8').addClass('wygrana');
+            wynikO++;
+        }
+        else if(box3=="O" && box6=="O" && box9=="O"){
+            $('#3, #6, #9').addClass('wygrana');
+            wynikO++;
+        }
+        else if(box1=="O" && box5=="O" && box9=="O"){
+            $('#1, #5, #9').addClass('wygrana');
+            wynikO++;
+        }
+        else if(box3=="O" && box5=="O" && box7=="O"){
+            $('#3, #5, #7').addClass('wygrana');
+            wynikO++;
+        }
+        else if(licznik == 9){
+            koniecGry = true;
+            alert('Remis');
+        }
+
+        if(wynikX > 0 || wynikO > 0){
+            $('#wynikX').text(wynikX);
+            $('#wynikO').text(wynikO);
+            koniecGry = true;
+        }
+
+    });
 
 });
-        })
+
     </script>
 </head>
     <body>
@@ -71,7 +166,7 @@
        
         <br>
         <div class="nazwaGracza">
-            <p id="nazwaGracza" style="display: none;">Ruch gracza X</p>
+            <p id="nazwaGracza" style="display: none;"></p>
         </div>
         <div class="container" style="display:none;">
             <div class="row text-center">
